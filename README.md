@@ -42,13 +42,21 @@ The system operates via the command line using the `run` script.
 | `-d` | **Required.** A file including document filenames (.lst file). |
 | `-r` | **Required.** A string identifying the experiment run. |
 | `-o` | **Required.** The output file for retrieval results (.res file). |
-| `--top_k` | Number of top documents to retrieve for each query (Default: 1000). |
+| `-top_k` | Number of top documents to retrieve for each query (Default: 1000). |
 | `--run_0`, `--run_1`, `--run_2` | Flags to automatically apply specific baseline or constrained experimental setups. |
-| `--lemmatization`, `--case_folding`, `--pos_stopping` | Flags for specific text preprocessing techniques. |
-| `--doc_weights`, `--query_weights` | Specify the weighting schemes for document and query terms. |
+|`--lemmatization` | Flag to lemmatize tokens using the MorphoDiTa tagger. |
+| `--case_folding` | Flag to apply case folding (lowercasing) to tokens. |
+| `--pos_stopping` | Flag to apply Part-of-Speech based stopping. |
+| `--number_normalization` | Flag to normalize all numeric digits to a standard `<num>` token. |
+| `--doc_weights` | Weighting scheme for document terms. Possible values: (`nnn`, `nnc`, `ntn`, `ntc`, `lnn`, `lnc`, `ltn`, `ltc`). |
+| `--query_weights` | Weighting scheme for query terms. Possible values: (`nnn`, `nnc`, `ntn`, `ntc`, `lnn`, `lnc`, `ltn`, `ltc`). |
+| `--use_query_description` | Flag to expand the query using the topic `<desc>` and `<narr>` fields. |
+| `--thesaurus_w` | Weight for the thesaurus synonyms. |
+| `--cpu_n` | Number of CPU cores to allocate for parallel processing (-1 for all cores). |
+| `--save_index` | Flag to save the constructed inverted index to disk for future runs. |
+| `--load_index` | Flag to load a pre-computed inverted index from disk instead of constructing it from the document collection. |
 
 ## Pre-defined Experimental Setups
 The system includes built-in configurations for standardized experiment runs:
 * **Run-0 (Baseline):** Uses natural term weighting, whitespace/punctuation tokenization, and cosine similarity without any query expansion or relevance feedback.
 * **Run-1 (Constrained):** Applies case folding, lemmatization, logarithmic term weighting (`ltn.lnc`), and thesaurus-based expansion (scaling factor 0.2) on topic titles.
-* **Run-2 (Unconstrained):** Builds upon the Run-1 configuration by expanding the query construction to include the topic description and narrative fields.
