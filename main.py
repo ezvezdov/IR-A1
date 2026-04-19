@@ -281,14 +281,11 @@ def retrieve_documents(args):
         else:
             query_text = query.title
 
-        print("Query:", query_text)
-
         tokens = process_text(query_text, args)
         
 
         # Keep original tokens separate
         original_frequency = Counter(tokens)
-        original_frequency_title = Counter(process_text(query.title, args))
         
         query_norm = 0
         doc_query_sim = dict()
@@ -318,9 +315,8 @@ def retrieve_documents(args):
                     doc_query_sim[doc_no] = doc_query_sim.get(doc_no, 0) + (inverted_index[token][doc_no] * query_weight)
 
         # Query expansion
-        print(args.thesaurus_w)
         if args.thesaurus_w > 0:
-            query_expansion(doc_query_sim, original_frequency_title, args)
+            query_expansion(doc_query_sim, original_frequency, args)
 
         # Vector normalization
         if args.query_weights[2] == 'c':
@@ -409,7 +405,7 @@ def init(args):
         args.lemmatization = True
         # args.pos_stopping = True
 
-        # args.thesaurus_w = 0.2
+        args.thesaurus_w = 0.2
 
         args.use_query_description = True
     else:
