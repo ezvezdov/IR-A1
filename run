@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Activate venv
+source .venv/bin/activate
+
+# Call python script and pass all arguments to it
+python3 main.py "$@"

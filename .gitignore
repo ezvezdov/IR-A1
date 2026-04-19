@@ -1,0 +1,24 @@
+# Ignore the virtual environment folder
+.venv
+
+# Ignore python cache files
+__pycache__/
+
+documents_cs/
+documents_en/
+documents*
+eval/
+saves/
+utils/
+task.md
+qrels*
+topics*
+
+eval_run*
+run0_cs.sh
+run0_en.sh
+run1_cs.sh
+run1_en.sh
+run2_cs.sh
+run2_en.sh
+
