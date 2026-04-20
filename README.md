@@ -2,22 +2,6 @@
 
 This project implements an experimental Information Retrieval system based on the Vector Space Model (VSM). The system is designed to rank documents according to their relevance to specific topics using an inverted index. It supports both English and Czech test collections and experiments with various text pre-processing techniques, weighting schemes, and query expansion methods.
 
-## Features
-* **Text Preprocessing:** Supports lemmatization (using the MorphoDiTa tagger), case folding, Part-of-Speech based stopping, and numbers normalization.
-* **Weighting Schemes:** Offers various term and document weighting schemes, including `nnn`, `nnc`, `ntn`, `ntc`, `lnn`, `lnc`, `ltn`, and `ltc`. (Note: Experimental results showed `ltn.lnc` as the best performing scheme for both English and Czech collections).
-* **Query Expansion:** Includes thesaurus-based expansion using synonyms from WordNet. It uses the NLTK WordNet interface for English and the Czech WordNet 1.9 PDT for Czech.
-* **Multiprocessing:** Features parallel processing capabilities to speed up the processing of large document collections.
-* **Index Management:** Supports saving the constructed inverted index to disk and loading a pre-computed index to expedite iterative experimentation.
-
-## Project Structure
-* `run`: The primary executable entry point that handles command-line argument parsing and orchestrates the retrieval pipeline.
-* `main.py`: Contains the core algorithmic logic for index construction, term-weighting, similarity computation, and document ranking.
-* `parser.py`: Manages the ingestion and preprocessing of TREC-formatted topic files and SGML-based document collections.
-* `Makefile`: Automates the project build process and environment setup.
-* `process_wordnet_cs.py`: A utility script that processes the Czech WordNet dataset into a custom JSON dictionary for query expansion.
-* `download_external.sh`: Automates the acquisition of external assets like MorphoDiTa models, datasets, and the `trec_eval` tool.
-* `requirements.txt`: Defines the Python runtime dependencies.
-
 ## Building and Execution
 
 ### Building
@@ -55,6 +39,23 @@ The system operates via the command line using the `run` script.
 | `--cpu_n` | Number of CPU cores to allocate for parallel processing (-1 for all cores). |
 | `--save_index` | Flag to save the constructed inverted index to disk for future runs. |
 | `--load_index` | Flag to load a pre-computed inverted index from disk instead of constructing it from the document collection. |
+
+## Features
+* **Text Preprocessing:** Supports lemmatization (using the MorphoDiTa tagger), case folding, Part-of-Speech based stopping, and numbers normalization.
+* **Weighting Schemes:** Offers various term and document weighting schemes, including `nnn`, `nnc`, `ntn`, `ntc`, `lnn`, `lnc`, `ltn`, and `ltc`. (Note: Experimental results showed `ltn.lnc` as the best performing scheme for both English and Czech collections).
+* **Query Expansion:** Includes thesaurus-based expansion using synonyms from WordNet. It uses the NLTK WordNet interface for English and the Czech WordNet 1.9 PDT for Czech.
+* **Multiprocessing:** Features parallel processing capabilities to speed up the processing of large document collections.
+* **Index Management:** Supports saving the constructed inverted index to disk and loading a pre-computed index to expedite iterative experimentation.
+
+## Project Structure
+* `run`: The primary executable entry point that handles command-line argument parsing and orchestrates the retrieval pipeline.
+* `main.py`: Contains the core algorithmic logic for index construction, term-weighting, similarity computation, and document ranking.
+* `parser.py`: Manages the ingestion and preprocessing of TREC-formatted topic files and SGML-based document collections.
+* `Makefile`: Automates the project build process and environment setup.
+* `process_wordnet_cs.py`: A utility script that processes the Czech WordNet dataset into a custom JSON dictionary for query expansion.
+* `download_external.sh`: Automates the acquisition of external assets like MorphoDiTa models, datasets, and the `trec_eval` tool.
+* `requirements.txt`: Defines the Python runtime dependencies.
+
 
 ## Pre-defined Experimental Setups
 The system includes built-in configurations for standardized experiment runs:
