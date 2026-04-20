@@ -30,3 +30,6 @@ make_eval:
 # Remove venv
 clean:
 	rm -rf $(VENV)
+
+zip:
+	zip -r A1.zip Makefile README.md download_external.sh main.py parser.py process_wordnet_cs.py report.pdf requirements.txt run run-0_test_cs.res run-0_test_en.res run-0_train_cs.res run-0_train_en.res run-1_test_cs.res run-1_test_en.res run-1_train_cs.res run-1_train_en.res slides.pdf
